@@ -1,0 +1,50 @@
+body {
+    background: #ffe500;
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+@keyframes heartbeat {
+    from {
+        transform: scale(1);
+        transform-origin: center center;
+        box-shadow: 1em 1em 0 #000;
+        animation-timing-function: ease-out;
+    }
+    10% {
+        transform: scale(0.91);
+        animation-timing-function: ease-in;
+        box-shadow: 0.91em 0.91em 0 #000;
+    }
+    17% {
+        transform: scale(0.98);
+        box-shadow: 0.98em 0.98em 0 #000;
+        animation-timing-function: ease-out;
+    }
+    33% {
+        transform: scale(0.87);
+        box-shadow: 0.87em 0.87em 0 #000;
+        animation-timing-function: ease-in;
+    }
+    45% {
+        transform: scale(1);
+        box-shadow: 1em 1em 0 #000;
+        animation-timing-function: ease-out;
+    }
+    100% {
+        box-shadow: 1em 1em 0 #000;
+    }
+  }
+
+h1 {
+    display: inline-block;
+    margin: auto;
+    color: #ff8800;
+    font-size: 21px;
+    background: #dfdfdf;
+    padding: 12px 0;
+    animation: heartbeat 2s linear infinite;
+}
