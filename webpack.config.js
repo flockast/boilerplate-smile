@@ -7,7 +7,6 @@ const config = {
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: 'assets/js/bundle.js',
-        publicPath: ''
     },
     devServer: {
         overlay: true
@@ -23,14 +22,19 @@ const config = {
                 test: /\.scss$/,
                 use: ExtractTextPlugin.extract({
                     fallback: "style-loader",
-                    use: ["css-loader", "sass-loader"]
+                    use: ["css-loader", "sass-loader"],
+                    publicPath: ''
                 })
+            },
+            {
+                test: /\.pug$/,
+                use: ["pug-loader"]
             }
         ]
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, 'src/index.html')
+            template: path.resolve(__dirname, 'src/index.pug')
         }),
         new ExtractTextPlugin("assets/css/bundle.css"),
     ]
