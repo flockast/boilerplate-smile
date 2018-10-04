@@ -1,5 +1,5 @@
 // import styles
-import './styles/index.scss'
+import './assets/styles/index.scss'
 
 // import js
-import './js/index'
+import './assets/js/index'
