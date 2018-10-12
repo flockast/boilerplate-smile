@@ -1,52 +1,80 @@
 const path = require('path');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const config = {
-    entry: './src/index.js',
+module.exports = {
+    entry: [
+        './src/js/index.js',
+        './src/styles/index.scss'
+    ],
     output: {
-        path: path.resolve(__dirname, './dist'),
-        filename: 'assets/js/bundle.js',
-    },
-    devServer: {
-        overlay: true
+        path: path.resolve(__dirname, 'prod'),
+        filename: 'js/[name].bundle.js'
     },
     module: {
         rules: [
             {
-                test: /\.jpe?g$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
-                loader: "file-loader"
+                test: /\.m?js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env']
+                    }
+                }
             },
             {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                loader: "babel-loader"
-            },
-            {
-                test: /\.scss$/,
+                test: /\.(scss|sass)$/,
                 use: ExtractTextPlugin.extract({
-                    fallback: "style-loader",
-                    use: ["css-loader", "sass-loader"],
-                    publicPath: ''
+                    fallback: 'style-loader',
+                    use: ['css-loader', 'sass-loader'],
+                    publicPath: '../'
                 })
             },
             {
-                test: /\.pug$/,
-                use: ["pug-loader"]
+                test: /\.(png|jpg|gif)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'img/'
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.(ttf|eot|woff|woff2)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'fonts/'
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.html$/,
+                use: [
+                    {
+                        loader: 'html-loader',
+                        options: {
+                            minimize: true
+                        }
+                    }
+                ],
             }
         ]
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, 'src/index.pug')
+            filename: 'index.html',
+            template: './src/index.html'
         }),
-        new ExtractTextPlugin("assets/css/bundle.css"),
+        new ExtractTextPlugin({
+            filename: 'css/[name].bundle.css',
+        })
     ]
-}
-
-module.exports = (env, options) => {
-    config.devtool = options.mode === 'production'
-        ? false
-        : 'eval-sorcemap'
-    return config;
-}
+};
