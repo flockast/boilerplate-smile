@@ -2,8 +2,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-module.exports = env => {
-    const isDev = env.mode === "development";
+module.exports = (env, options) => {
+
+    const isDev = options.mode === "development";
 
     return {
         entry: [
