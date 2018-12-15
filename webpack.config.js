@@ -1,6 +1,10 @@
-const path = require('path');
+const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const autoprefixer = require('autoprefixer');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = (env, options) => {
 
@@ -13,66 +17,56 @@ module.exports = (env, options) => {
         ],
         output: {
             path: path.resolve(__dirname, 'dist'),
-            filename: 'js/[name].bundle.js'
+            filename: 'static/bundle.[name].js',
         },
+        devServer: {
+            overlay: true
+        },
+        devtool: isDev ? 'source-map' : '',
         module: {
             rules: [
+                {test: /\.js$/, exclude: /node_modules/, loader: "babel-loader"},
                 {
-                    test: /\.m?js$/,
-                    exclude: /(node_modules|bower_components)/,
-                    use: {
-                        loader: 'babel-loader',
-                        options: {
-                            presets: ['@babel/preset-env']
-                        }
-                    }
-                },
-                {
-                    test: /\.(scss|sass)$/,
-                    use: ExtractTextPlugin.extract({
-                        fallback: 'style-loader',
-                        use: ['css-loader', 'sass-loader'],
-                        publicPath: '../'
-                    })
-                },
-                {
-                    test: /\.(png|jpg|gif)$/,
+                    test: /\.(sa|sc|c)ss$/,
                     use: [
+                        MiniCssExtractPlugin.loader,
+                        `css-loader?sourceMap=${ isDev }&url=false`,
                         {
-                            loader: 'file-loader',
+                            loader: "postcss-loader",
                             options: {
-                                context: './src/img',
-                                name: '[name].[ext]',
-                                outputPath: 'img/'
+                                plugins: [
+                                    autoprefixer({
+                                        browsers: ['ie >= 8', 'last 4 version']
+                                    })
+                                ],
+                                sourceMap: isDev
                             }
-                        }
+                        },
+                        `sass-loader?sourceMap=${ isDev }`
                     ]
                 },
-                {
-                    test: /\.(ttf|eot|woff|woff2)$/,
-                    use: [
-                        {
-                            loader: 'file-loader',
-                            options: {
-                                context: './src/fonts',
-                                name: '[name].[ext]',
-                                outputPath: 'fonts/'
-                            }
-                        }
-                    ]
-                }
+                {test: /\.ejs$/, loader: "ejs-loader"},
             ]
         },
         plugins: [
+            !isDev ? new OptimizeCSSAssetsPlugin({}) : () => {},
+            !isDev ? new CleanWebpackPlugin('dist') : () => {},
+            new CopyWebpackPlugin([
+                {
+                    from: './src/fonts',
+                    to: 'static/fonts',
+                },
+                {
+                    from: './src/img',
+                    to: 'static/img',
+                }
+            ]),
+            new MiniCssExtractPlugin({
+                filename: 'static/bundle.[name].css'
+            }),
             new HtmlWebpackPlugin({
                 filename: 'index.html',
-                template: './src/index.ejs',
-                minify: {
-                    collapseWhitespace: !isDev
-                }
-            }),
-            new ExtractTextPlugin({
-                filename: 'css/[name].bundle.css',
+                template: `./src/index.ejs`
             })
         ]
     }
