@@ -1,10 +1,20 @@
 body {
-    background: #ffe500;
-    font-family: 'Courier New', Courier, monospace;
+    background: forestgreen;
+    font-family: consolas, monospace;
     display: flex;
     height: 100vh;
     margin: 0;
     padding: 0;
+}
+
+h1 {
+    display: inline-block;
+    margin: auto;
+    color: #111;
+    font-size: 21px;
+    background: #dfdfdf;
+    padding: 12px 0;
+    animation: heartbeat 2s linear infinite;
 }
 
 @keyframes heartbeat {
@@ -37,14 +47,4 @@ body {
     100% {
         box-shadow: 1em 1em 0 #000;
     }
-  }
-
-h1 {
-    display: inline-block;
-    margin: auto;
-    color: #ff8800;
-    font-size: 21px;
-    background: #dfdfdf;
-    padding: 12px 0;
-    animation: heartbeat 2s linear infinite;
 }
