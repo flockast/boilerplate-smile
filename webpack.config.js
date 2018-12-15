@@ -5,19 +5,22 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const {config} = require('./package.json');
 
 module.exports = (env, options) => {
 
     const isDev = options.mode === "development";
 
+    console.log(config);
+
     return {
         entry: [
-            './src/js/index.js',
-            './src/styles/index.scss'
+            config.src.base + config.src.js,
+            config.src.base + config.src.styles
         ],
         output: {
-            path: path.resolve(__dirname, 'dist'),
-            filename: 'static/bundle.[name].js',
+            path: path.resolve(__dirname, config.build.base),
+            filename: config.build.js,
         },
         devServer: {
             overlay: true
@@ -53,20 +56,20 @@ module.exports = (env, options) => {
             !isDev ? new CleanWebpackPlugin('dist') : () => {},
             new CopyWebpackPlugin([
                 {
-                    from: './src/fonts',
-                    to: 'static/fonts',
+                    from: config.src.base + config.src.fonts,
+                    to: config.build.fonts,
                 },
                 {
-                    from: './src/img',
-                    to: 'static/img',
+                    from: config.src.base + config.src.img,
+                    to: config.build.img,
                 }
             ]),
             new MiniCssExtractPlugin({
-                filename: 'static/bundle.[name].css'
+                filename: config.build.styles
             }),
             new HtmlWebpackPlugin({
-                filename: 'index.html',
-                template: `./src/index.ejs`
+                filename: config.build.html,
+                template: config.src.base + config.src.html
             })
         ]
     }

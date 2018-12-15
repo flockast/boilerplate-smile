@@ -1,8 +1,26 @@
 {
   "name": "boilerplate-smile",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "main": "src/js/index.js",
   "license": "MIT",
+  "config": {
+    "src": {
+      "base": "./src",
+      "styles": "/styles/index.scss",
+      "js": "/js/index.js",
+      "img": "/img",
+      "fonts": "/fonts",
+      "html": "/index.ejs"
+    },
+    "build": {
+      "base": "dist",
+      "styles": "static/bundle.[name].css",
+      "js": "static/bundle.[name].js",
+      "img": "static/img",
+      "fonts": "static/fonts",
+      "html": "index.html"
+    }
+  },
   "scripts": {
     "dev": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production"
