@@ -11,7 +11,18 @@ module.exports = (env, options) => {
 
     const isDev = options.mode === "development";
 
-    console.log(config);
+    let HtmlWebpackPlugins = [];
+
+    config.pages.forEach(page => {
+        for(file in page) {
+            HtmlWebpackPlugins.push(
+                new HtmlWebpackPlugin({
+                    filename: page[file],
+                    template: config.src.base + file
+                })
+            )
+        }
+    });
 
     return {
         entry: [
@@ -66,11 +77,7 @@ module.exports = (env, options) => {
             ]),
             new MiniCssExtractPlugin({
                 filename: config.build.styles
-            }),
-            new HtmlWebpackPlugin({
-                filename: config.build.html,
-                template: config.src.base + config.src.html
             })
-        ]
+        ].concat(HtmlWebpackPlugins)
     }
 };
