@@ -1,6 +1,6 @@
 {
   "name": "boilerplate-smile",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "main": "src/js/index.js",
   "license": "MIT",
   "config": {

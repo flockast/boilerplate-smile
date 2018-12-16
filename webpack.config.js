@@ -18,7 +18,8 @@ module.exports = (env, options) => {
             HtmlWebpackPlugins.push(
                 new HtmlWebpackPlugin({
                     filename: page[file],
-                    template: config.src.base + file
+                    template: config.src.base + file,
+                    title: `This is ${page[file]}`
                 })
             )
         }
