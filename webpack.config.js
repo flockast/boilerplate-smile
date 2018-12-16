@@ -62,6 +62,7 @@ module.exports = (env, options) => {
                     ]
                 },
                 {test: /\.ejs$/, loader: "ejs-loader"},
+                {test: /\.svg/, loader: "svg-inline-loader"},
             ]
         },
         plugins: [
