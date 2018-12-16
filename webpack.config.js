@@ -32,6 +32,7 @@ module.exports = (env, options) => {
         output: {
             path: path.resolve(__dirname, config.build.base),
             filename: config.build.js,
+            publicPath: config.publicPath
         },
         devServer: {
             overlay: true
