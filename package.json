@@ -1,6 +1,6 @@
 {
   "name": "boilerplate-smile",
-  "version": "2.0.4",
+  "version": "2.1.0",
   "main": "src/js/index.js",
   "license": "MIT",
   "config": {
@@ -34,6 +34,7 @@
     "@babel/preset-env": "^7.1.0",
     "autoprefixer": "^9.4.2",
     "babel-loader": "^8.0.4",
+    "clean-css-loader": "^1.1.0",
     "clean-webpack-plugin": "^1.0.0",
     "copy-webpack-plugin": "^4.6.0",
     "css-loader": "^1.0.0",
