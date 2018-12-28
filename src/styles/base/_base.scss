@@ -1,0 +1,23 @@
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+a {
+  &:hover {
+
+  }
+}
+
+body {
+  font-family: $text-font;
+  font-size: $text-size;
+  color: $text-color;
+  line-height: 1.2;
+}
