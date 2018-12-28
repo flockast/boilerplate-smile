@@ -58,6 +58,7 @@ module.exports = (env, options) => {
                                 sourceMap: isDev
                             }
                         },
+                        `group-css-media-queries-loader?sourceMap=${ isDev }`,
                         `sass-loader?sourceMap=${ isDev }`
                     ]
                 },
