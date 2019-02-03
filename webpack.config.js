@@ -12,6 +12,7 @@ module.exports = (env, options) => {
     const isDev = options.mode === "development";
 
     let HtmlWebpackPlugins = [];
+    let copyFiles = [];
     let cssUseList = [MiniCssExtractPlugin.loader, `css-loader?sourceMap=${ isDev }&url=false`];
 
     config.pages.forEach(page => {
@@ -25,6 +26,15 @@ module.exports = (env, options) => {
             )
         }
     });
+
+    if(config.copy) {
+        config.copy.forEach(copy => {
+            copyFiles.push({
+                from: config.src.base + copy.from,
+                to: copy.to
+            })
+        })
+    }
 
     if(!isDev) {
         cssUseList.push(
@@ -87,16 +97,7 @@ module.exports = (env, options) => {
         plugins: [
             !isDev ? new OptimizeCSSAssetsPlugin({}) : () => {},
             !isDev ? new CleanWebpackPlugin('dist') : () => {},
-            new CopyWebpackPlugin([
-                {
-                    from: config.src.base + config.src.fonts,
-                    to: config.build.fonts,
-                },
-                {
-                    from: config.src.base + config.src.img,
-                    to: config.build.img,
-                }
-            ]),
+            new CopyWebpackPlugin(copyFiles),
             new MiniCssExtractPlugin({
                 filename: config.build.styles
             })
