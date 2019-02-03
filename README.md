@@ -25,17 +25,23 @@ file <b>package.json</b> have config
     "src": {
       "base": "./src",
       "styles": "/styles/index.scss",
-      "js": "/js/index.js",
-      "img": "/img",
-      "fonts": "/fonts"
+      "js": "/js/index.js"
     },
     "build": {
       "base": "dist",
       "styles": "static/bundle.[name].css",
-      "js": "static/bundle.[name].js",
-      "img": "static/img",
-      "fonts": "static/fonts"
+      "js": "static/bundle.[name].js"
     },
+    "copy": [
+      {
+        "from": "/img",
+        "to": "static/img"
+      },
+      {
+        "from": "/fonts",
+        "to": "static/fonts"
+      }
+    ],
     "pages": [
       {
         "/index.ejs": "index.html"
