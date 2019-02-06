@@ -89,6 +89,15 @@ module.exports = (env, options) => {
                         }
                     }
                 },
+                {
+                    test: /\.(njk|nunjucks|nunj)$/,
+                    use: ['html-loader', {
+                        loader: 'nunjucks-html-loader',
+                        options : {
+                            searchPaths: [`${config.src.base}${config.src.templates}`]
+                        }
+                    }]
+                },
                 {test: /\.(sa|sc|c)ss$/, use: cssUseList},
                 {test: /\.ejs$/, loader: "ejs-loader"},
                 {test: /\.svg/, loader: "svg-inline-loader"},

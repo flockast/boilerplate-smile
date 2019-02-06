@@ -1,13 +1,14 @@
 {
   "name": "boilerplate-smile",
-  "version": "2.4.0",
+  "version": "3.0.0",
   "main": "src/js/index.js",
   "license": "MIT",
   "config": {
     "src": {
       "base": "./src",
       "styles": "/styles/index.scss",
-      "js": "/js/index.js"
+      "js": "/js/index.js",
+      "templates": "/templates"
     },
     "build": {
       "base": "dist",
@@ -30,11 +31,8 @@
     ],
     "pages": [
       {
-        "from": "/index.ejs",
-        "to": "index.html",
-        "data": {
-          "title": "hello, smile"
-        }
+        "from": "/templates/pages/index.njk",
+        "to": "index.html"
       }
     ],
     "publicPath": ""
@@ -56,9 +54,11 @@
     "ejs-loader": "^0.3.1",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "group-css-media-queries-loader": "^3.0.2",
+    "html-loader": "^0.5.5",
     "html-webpack-plugin": "^4.0.0-beta.2",
     "mini-css-extract-plugin": "^0.5.0",
     "node-sass": "^4.9.3",
+    "nunjucks-html-loader": "^1.1.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss-loader": "^3.0.0",
     "sass-loader": "^7.1.0",
