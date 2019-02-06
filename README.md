@@ -25,7 +25,8 @@ file <b>package.json</b> have config
     "src": {
       "base": "./src",
       "styles": "/styles/index.scss",
-      "js": "/js/index.js"
+      "js": "/js/index.js",
+      "templates": "/templates"
     },
     "build": {
       "base": "dist",
@@ -48,11 +49,8 @@ file <b>package.json</b> have config
     ],
     "pages": [
       {
-        "from": "/index.ejs",
-        "to": "index.html",
-        "data": {
-          "title": "hello, smile"
-        }
+        "from": "/templates/pages/index.njk",
+        "to": "index.html"
       }
     ],
     "publicPath": ""
