@@ -1,6 +1,6 @@
 {
   "name": "boilerplate-smile",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "main": "src/js/index.js",
   "license": "MIT",
   "config": {
@@ -17,14 +17,6 @@
     },
     "copy": [
       {
-        "from": "/img",
-        "to": "static/img"
-      },
-      {
-        "from": "/fonts",
-        "to": "static/fonts"
-      },
-      {
         "from": "/favicon.ico",
         "to": "[name].[ext]"
       }
@@ -40,7 +32,7 @@
   "scripts": {
     "dev": "webpack-dev-server --mode development",
     "build": "webpack --mode production",
-    "build-watch": "webpack --watch"
+    "build:watch": "webpack --watch"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
@@ -53,6 +45,7 @@
     "css-loader": "^1.0.0",
     "ejs-loader": "^0.3.1",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "file-loader": "^3.0.1",
     "group-css-media-queries-loader": "^3.0.2",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^4.0.0-beta.2",

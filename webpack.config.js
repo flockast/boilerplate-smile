@@ -13,7 +13,7 @@ module.exports = (env, options) => {
 
     let HtmlWebpackPlugins = [];
     let copyFiles = [];
-    let cssUseList = [MiniCssExtractPlugin.loader, `css-loader?sourceMap=${ isDev }&url=false`];
+    let cssUseList = [MiniCssExtractPlugin.loader, `css-loader?sourceMap=${ isDev }`];
 
     if(config.pages) {
         config.pages.forEach(page => {
@@ -97,6 +97,18 @@ module.exports = (env, options) => {
                             searchPaths: [`${config.src.base}${config.src.templates}`]
                         }
                     }]
+                },
+                {
+                    test: /\.(png|jpg|gif|ttf|woff|woff2|eot|otf)$/,
+                    use: [
+                        {
+                            loader: 'file-loader',
+                            options: {
+                                name: "[path][name].[ext]",
+                                context: config.src.base
+                            },
+                        },
+                    ],
                 },
                 {test: /\.(sa|sc|c)ss$/, use: cssUseList},
                 {test: /\.ejs$/, loader: "ejs-loader"},
