@@ -29,8 +29,8 @@ file <b>package.json</b> have config
     },
     "build": {
       "base": "dist",
-      "styles": "static/bundle.[name].css",
-      "js": "static/bundle.[name].js"
+      "styles": "bundle.[name].css",
+      "js": "bundle.[name].js"
     },
     "copy": [
       {
@@ -40,11 +40,19 @@ file <b>package.json</b> have config
       {
         "from": "/fonts",
         "to": "static/fonts"
+      },
+      {
+        "from": "/favicon.ico",
+        "to": "[name].[ext]"
       }
     ],
     "pages": [
       {
-        "/index.ejs": "index.html"
+        "from": "/index.ejs",
+        "to": "index.html",
+        "data": {
+          "title": "hello, smile"
+        }
       }
     ],
     "publicPath": ""

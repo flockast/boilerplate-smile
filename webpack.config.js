@@ -15,17 +15,17 @@ module.exports = (env, options) => {
     let copyFiles = [];
     let cssUseList = [MiniCssExtractPlugin.loader, `css-loader?sourceMap=${ isDev }&url=false`];
 
-    config.pages.forEach(page => {
-        for(file in page) {
+    if(config.pages) {
+        config.pages.forEach(page => {
             HtmlWebpackPlugins.push(
                 new HtmlWebpackPlugin({
-                    filename: page[file],
-                    template: config.src.base + file,
-                    title: `This is ${page[file]}`
+                    template: config.src.base + page.from,
+                    filename: page.to,
+                    data: page.data || {}
                 })
             )
-        }
-    });
+        })
+    }
 
     if(config.copy) {
         config.copy.forEach(copy => {
