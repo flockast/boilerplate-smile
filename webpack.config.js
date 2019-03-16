@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const autoprefixer = require('autoprefixer');
+const postCssInlineSvg = require('postcss-inline-svg');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const {config} = require('./package.json');
 
@@ -11,9 +12,29 @@ module.exports = (env, options) => {
 
     const isDev = options.mode === "development";
 
+    const cssUseList = [
+        MiniCssExtractPlugin.loader,
+        `css-loader?sourceMap=${ isDev }`,
+        {
+            loader: "postcss-loader",
+            options: {
+                plugins: [
+                    postCssInlineSvg(),
+                    autoprefixer({
+                        browsers: ['ie >= 8', 'last 4 version']
+                    })
+                ],
+                sourceMap: isDev
+            }
+        },
+        `group-css-media-queries-loader?sourceMap=${ isDev }`,
+        `sass-loader?sourceMap=${ isDev }`
+    ];
+
     let HtmlWebpackPlugins = [];
     let copyFiles = [];
-    let cssUseList = [MiniCssExtractPlugin.loader, `css-loader?sourceMap=${ isDev }`];
+
+
 
     if(config.pages) {
         config.pages.forEach(page => {
@@ -35,33 +56,6 @@ module.exports = (env, options) => {
             })
         })
     }
-
-    if(!isDev) {
-        cssUseList.push(
-            {
-                loader: "postcss-loader",
-                options: {
-                    plugins: [
-                        autoprefixer({
-                            browsers: ['ie >= 8', 'last 4 version']
-                        })
-                    ],
-                    sourceMap: isDev
-                }
-            },
-            {
-                loader: "clean-css-loader",
-                options: {
-                    compatibility: "ie9",
-                    level: 2,
-                    inline: ["remote"]
-                }
-            },
-            'group-css-media-queries-loader',
-        )
-    }
-
-    cssUseList.push(`sass-loader?sourceMap=${ isDev }`);
 
     return {
         entry: [
