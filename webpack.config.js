@@ -12,29 +12,8 @@ module.exports = (env, options) => {
 
     const isDev = options.mode === "development";
 
-    const cssUseList = [
-        MiniCssExtractPlugin.loader,
-        `css-loader?sourceMap=${ isDev }`,
-        {
-            loader: "postcss-loader",
-            options: {
-                plugins: [
-                    postCssInlineSvg(),
-                    autoprefixer({
-                        browsers: ['ie >= 8', 'last 4 version']
-                    })
-                ],
-                sourceMap: isDev
-            }
-        },
-        `group-css-media-queries-loader?sourceMap=${ isDev }`,
-        `sass-loader?sourceMap=${ isDev }`
-    ];
-
     let HtmlWebpackPlugins = [];
     let copyFiles = [];
-
-
 
     if(config.pages) {
         config.pages.forEach(page => {
@@ -93,7 +72,7 @@ module.exports = (env, options) => {
                     }]
                 },
                 {
-                    test: /\.(png|jpg|gif|ttf|woff|woff2|eot|otf)$/,
+                    test: /\.(png|jpg|gif|ttf|woff|woff2|eot|otf|svg)$/,
                     use: [
                         {
                             loader: 'file-loader',
@@ -104,9 +83,28 @@ module.exports = (env, options) => {
                         },
                     ],
                 },
-                {test: /\.(sa|sc|c)ss$/, use: cssUseList},
+                {
+                    test: /\.(sa|sc|c)ss$/,
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        `css-loader?sourceMap=${ isDev }`,
+                        {
+                            loader: "postcss-loader",
+                            options: {
+                                plugins: [
+                                    postCssInlineSvg(),
+                                    autoprefixer({
+                                        browsers: ['ie >= 8', 'last 4 version']
+                                    })
+                                ],
+                                sourceMap: isDev
+                            }
+                        },
+                        `group-css-media-queries-loader?sourceMap=${ isDev }`,
+                        `sass-loader?sourceMap=${ isDev }`
+                    ]
+                },
                 {test: /\.ejs$/, loader: "ejs-loader"},
-                {test: /\.svg/, loader: "svg-inline-loader"},
             ]
         },
         plugins: [
