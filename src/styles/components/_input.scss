@@ -1,0 +1,26 @@
+.input {
+  display: inline-block;
+  background: #ffffff;
+  border: .1rem solid $brand-accent;
+  font-family: $text-font;
+  font-size: 1.8rem;
+  border-radius: .3rem;
+  padding: 2rem 2rem;
+  appearance: none;
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 .1rem darken($brand-accent, 8%);
+    border-color: darken($brand-accent, 8%);
+  }
+  &--full {
+    width: 100%;
+  }
+  &--error {
+    box-shadow: 0 0 .2em .1rem #ec3a40;
+    border-color: #ec3a40;
+  }
+  &:disabled {
+    background: #f0f0f0;
+    color: #adadad;
+  }
+}

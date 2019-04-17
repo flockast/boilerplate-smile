@@ -1,0 +1,68 @@
+.button {
+  background: none;
+  display: inline-block;
+  border: .2rem solid $brand-accent;
+  border-radius: .3rem;
+  font-family: $text-font;
+  font-size: 1.6rem;
+  color: $brand-accent;
+  padding: 1.8rem 4.2rem;
+  cursor: pointer;
+  text-decoration: none;
+  line-height: 1;
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 .1rem lighten($brand-accent, 10%);
+  }
+  &:hover {
+    background: $brand-accent;
+    color: #ffffff;
+  }
+  &:active {
+    padding-top: 1.9rem;
+    padding-bottom: 1.7rem;
+  }
+  &--sm {
+    padding-top: 1.4rem;
+    padding-bottom: 1.4rem;
+    &:active {
+      padding-top: 1.5rem;
+      padding-bottom: 1.3rem;
+    }
+  }
+  &--light {
+    color: #ffffff;
+  }
+  &--full {
+    width: 100%;
+  }
+  &--center {
+    text-align: center;
+  }
+  &--loading {
+    position: relative;
+    cursor: auto;
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(#fa2d00, .7);
+      background-size: 5rem;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    &:hover {
+      background: #ffffff;
+      color: #fa2d00;
+    }
+  }
+  &--success,
+  &--success:hover {
+    background: green;
+    color: #ffffff;
+    border-color: #025a02;
+  }
+}
