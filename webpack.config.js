@@ -19,7 +19,7 @@ module.exports = (env, options) => {
         config.pages.forEach(page => {
             HtmlWebpackPlugins.push(
                 new HtmlWebpackPlugin({
-                    template: config.src.base + page.from,
+                    template: config.src.base + config.src.templates + page.from,
                     filename: page.to,
                     data: page.data || {}
                 })
@@ -113,7 +113,8 @@ module.exports = (env, options) => {
             new CopyWebpackPlugin(copyFiles),
             new MiniCssExtractPlugin({
                 filename: config.build.styles
-            })
-        ].concat(HtmlWebpackPlugins)
+            }),
+            ...HtmlWebpackPlugins
+        ]
     }
 };

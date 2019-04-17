@@ -23,7 +23,7 @@
     ],
     "pages": [
       {
-        "from": "/templates/pages/index.njk",
+        "from": "/pages/index.njk",
         "to": "index.html"
       }
     ],
