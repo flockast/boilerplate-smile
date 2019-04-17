@@ -6,6 +6,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const postCssInlineSvg = require('postcss-inline-svg');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const {config} = require('./package.json');
 
 module.exports = (env, options) => {
@@ -21,7 +22,7 @@ module.exports = (env, options) => {
                 new HtmlWebpackPlugin({
                     template: config.src.base + config.src.templates + page.from,
                     filename: page.to,
-                    data: page.data || {}
+                    chunks: page.chunks
                 })
             )
         })
@@ -104,8 +105,15 @@ module.exports = (env, options) => {
                         `sass-loader?sourceMap=${ isDev }`
                     ]
                 },
+                {test: /\.vue$/, loader: 'vue-loader',},
                 {test: /\.ejs$/, loader: "ejs-loader"},
             ]
+        },
+        resolve: {
+            alias: {
+                'vue$': 'vue/dist/vue.esm.js',
+            },
+            extensions: ['.js', '.vue']
         },
         plugins: [
             !isDev ? new OptimizeCSSAssetsPlugin({}) : () => {},
