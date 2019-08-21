@@ -1,0 +1,17 @@
+.wrapper {
+  background: $color-brand-main;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  &__logo {
+    margin-bottom: 2rem;
+  }
+  &__nav {
+    margin-bottom: 4rem;
+  }
+  &__content {
+
+  }
+}

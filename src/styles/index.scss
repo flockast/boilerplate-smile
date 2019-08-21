@@ -15,4 +15,8 @@
   "utilities/input";
 
 @import
-  "layout/home";
+  "layout/base";
+
+@import
+  "partials/logo",
+  "partials/nav";

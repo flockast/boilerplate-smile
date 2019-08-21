@@ -10,8 +10,10 @@ html {
 }
 
 a {
+  color: $color-link;
+  text-decoration: underline;
   &:hover {
-
+    color: $color-link-hover;
   }
 }
 

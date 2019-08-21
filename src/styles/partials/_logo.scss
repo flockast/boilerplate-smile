@@ -1,14 +1,8 @@
-body {
-  background: $color-brand-main;
-  display: flex;
-  height: 100vh;
-}
-
 .smile {
   display: inline-block;
-  margin: auto;
   padding: 1.2rem 2rem;
   border-radius: 3rem;
+  margin-bottom: 2rem;
   border: .2rem solid $color-font;
   box-shadow: 1em 1em 0 $color-font;
   &:hover {

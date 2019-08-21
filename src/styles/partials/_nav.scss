@@ -1,0 +1,14 @@
+.nav {
+  &__list {
+    display: flex;
+    justify-content: center;
+    li {
+      margin: 0 2rem;
+      a {
+        &.is-active {
+          color: white;
+        }
+      }
+    }
+  }
+}
