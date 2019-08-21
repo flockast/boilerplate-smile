@@ -1,21 +1,21 @@
 .button {
   background: none;
   display: inline-block;
-  border: .2rem solid $brand-accent;
+  border: .2rem solid $color-brand-accent;
   border-radius: .3rem;
-  font-family: $text-font;
+  font-family: $font-family;
   font-size: 1.6rem;
-  color: $brand-accent;
+  color: $color-brand-accent;
   padding: 1.8rem 4.2rem;
   cursor: pointer;
   text-decoration: none;
   line-height: 1;
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 .1rem lighten($brand-accent, 10%);
+    box-shadow: 0 0 0 .1rem lighten($color-brand-accent, 10%);
   }
   &:hover {
-    background: $brand-accent;
+    background: $color-brand-accent;
     color: #ffffff;
   }
   &:active {

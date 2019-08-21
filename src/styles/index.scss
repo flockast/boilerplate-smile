@@ -1,19 +1,18 @@
 @import
   "abstracts/variables",
-  "abstracts/mixins",
-  "abstracts/smart-grid";
+  "abstracts/mixins";
 
 @import
   "base/reset",
   "base/fonts",
-  "base/base",
+  "base/common",
+  "base/grid",
   "base/helpers";
 
 @import
-  "components/button",
-  "components/checkbox",
-  "components/input";
+  "utilities/button",
+  "utilities/checkbox",
+  "utilities/input";
 
 @import
   "layout/home";
-

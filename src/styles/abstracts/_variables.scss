@@ -1,8 +1,35 @@
-$text-font: 'Consolas', monospace;
-$text-color: black;
-$text-size: 2.1rem;
-
-$brand-color: linear-gradient(180deg, #24ac99, #40d59d);
-$brand-accent: steelblue;
-
+/* fonts */
+$font-family: 'Consolas', monospace;
+$font-size: 2.1rem;
 $font-path: '../fonts';
+$line-height: 1.25;
+
+/* colors */
+$color-brand-main: linear-gradient(180deg, #24ac99, #40d59d);
+$color-brand-accent: steelblue;
+$color-font: black;
+
+/* grid */
+$columns: 12;
+$atom: (100% / $columns);
+
+$break_xs: 560px;
+$break_sm: 780px;
+$break_md: 960px;
+$break_lg: 1100px;
+
+$offset: 30px;
+$offset_xs: $offset;
+$offset_sm: $offset;
+$offset_md: $offset;
+$offset_lg: $offset;
+
+$offset_one_side: ($offset / 2);
+$offset_xs_one_side: ($offset_xs / 2);
+$offset_sm_one_side: ($offset_sm / 2);
+$offset_md_one_side: ($offset_md / 2);
+$offset_lg_one_side: ($offset_lg / 2);
+
+$fields: 15px;
+
+

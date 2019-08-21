@@ -1,5 +1,5 @@
 body {
-  background: $brand-color;
+  background: $color-brand-main;
   display: flex;
   height: 100vh;
 }
@@ -9,8 +9,8 @@ h1 {
   margin: auto;
   padding: 1.2rem 2rem;
   border-radius: 3rem;
-  border: .2rem solid $text-color;
-  box-shadow: 1em 1em 0 $text-color;
+  border: .2rem solid $color-font;
+  box-shadow: 1em 1em 0 $color-font;
   &:hover {
     animation: heartbeat 2s linear infinite;
   }
@@ -20,27 +20,27 @@ h1 {
   from {
     transform: scale(1);
     transform-origin: center center;
-    box-shadow: 1em 1em 0 $text-color;
+    box-shadow: 1em 1em 0 $color-font;
     animation-timing-function: ease-out;
   }
   10% {
     transform: scale(0.91);
-    box-shadow: 0.91em 0.91em 0 $text-color;
+    box-shadow: 0.91em 0.91em 0 $color-font;
     animation-timing-function: ease-in;
   }
   17% {
     transform: scale(0.98);
-    box-shadow: 0.98em 0.98em 0 $text-color;
+    box-shadow: 0.98em 0.98em 0 $color-font;
     animation-timing-function: ease-out;
   }
   33% {
     transform: scale(0.87);
-    box-shadow: 0.87em 0.87em 0 $text-color;
+    box-shadow: 0.87em 0.87em 0 $color-font;
     animation-timing-function: ease-in;
   }
   45%, 100% {
     transform: scale(1);
-    box-shadow: 1em 1em 0 $text-color;
+    box-shadow: 1em 1em 0 $color-font;
     animation-timing-function: ease-out;
   }
 }

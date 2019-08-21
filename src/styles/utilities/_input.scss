@@ -1,16 +1,16 @@
 .input {
   display: inline-block;
   background: #ffffff;
-  border: .1rem solid $brand-accent;
-  font-family: $text-font;
+  border: .1rem solid $color-brand-accent;
+  font-family: $font-family;
   font-size: 1.8rem;
   border-radius: .3rem;
   padding: 2rem 2rem;
   appearance: none;
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 .1rem darken($brand-accent, 8%);
-    border-color: darken($brand-accent, 8%);
+    box-shadow: 0 0 0 .1rem darken($color-brand-accent, 8%);
+    border-color: darken($color-brand-accent, 8%);
   }
   &--full {
     width: 100%;
