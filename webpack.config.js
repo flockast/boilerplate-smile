@@ -5,7 +5,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const postCssInlineSvg = require('postcss-inline-svg');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin }  = require('clean-webpack-plugin');
 const {smile} = require('./package.json');
 
 module.exports = (env, options) => {
@@ -94,9 +94,7 @@ module.exports = (env, options) => {
                             options: {
                                 plugins: [
                                     postCssInlineSvg(),
-                                    autoprefixer({
-                                        browsers: ['ie >= 8', 'last 4 version']
-                                    })
+                                    autoprefixer()
                                 ],
                                 sourceMap: isDev
                             }
@@ -110,7 +108,7 @@ module.exports = (env, options) => {
         },
         plugins: [
             !isDev ? new OptimizeCSSAssetsPlugin({}) : () => {},
-            !isDev ? new CleanWebpackPlugin('dist') : () => {},
+            !isDev ? new CleanWebpackPlugin() : () => {},
             new CopyWebpackPlugin(copyFiles),
             new MiniCssExtractPlugin({
                 filename: smile.build.styles
