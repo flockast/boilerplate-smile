@@ -1,6 +1,6 @@
 {
   "name": "boilerplate-smile",
-  "version": "3.3.0",
+  "version": "3.4.0",
   "main": "src/js/index.js",
   "license": "MIT",
   "smile": {
@@ -60,8 +60,6 @@
     "postcss-inline-svg": "^3.1.1",
     "postcss-loader": "^3.0.0",
     "sass-loader": "^7.1.0",
-    "vue-loader": "^15.7.0",
-    "vue-template-compiler": "^2.6.10",
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.9"
