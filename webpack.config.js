@@ -1,37 +1,38 @@
-const path = require("path");
+const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const postCssInlineSvg = require('postcss-inline-svg');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const {config} = require('./package.json');
+const {smile} = require('./package.json');
 
 module.exports = (env, options) => {
 
-    const isDev = options.mode === "development";
+    const isDev = options.mode === 'development';
 
     let HtmlWebpackPlugins = [];
     let copyFiles = [];
 
-    if(config.pages) {
-        config.pages.forEach(page => {
+    if(smile.routes) {
+        smile.routes.forEach(route => {
             HtmlWebpackPlugins.push(
                 new HtmlWebpackPlugin({
-                    template: config.src.base + config.src.templates + page.from,
-                    filename: page.to,
-                    chunks: page.chunks
+                    template: `${smile.src.base}/${smile.src.views}/${route.file}`,
+                    filename: `${route.url}/index.html`.split('/').filter(el => el !== '').join('/'),
+                    chunks: route.chunks
                 })
             )
         })
     }
 
-    if(config.copy) {
-        config.copy.forEach(copy => {
+
+    if(smile.copy) {
+        smile.copy.forEach(copy => {
             copyFiles.push({
-                from: config.src.base + copy.from,
+                from: `${smile.src.base}/${copy.from}`,
                 to: copy.to
             })
         })
@@ -39,13 +40,13 @@ module.exports = (env, options) => {
 
     return {
         entry: [
-            config.src.base + config.src.js,
-            config.src.base + config.src.styles
+            `${smile.src.base}/${smile.src.js}`,
+            `${smile.src.base}/${smile.src.styles}`
         ],
         output: {
-            path: path.resolve(__dirname, config.build.base),
-            filename: config.build.js,
-            publicPath: config.publicPath
+            path: path.resolve(__dirname, smile.build.base),
+            filename: smile.build.js,
+            publicPath: smile.publicPath
         },
         devServer: {
             overlay: true
@@ -68,7 +69,7 @@ module.exports = (env, options) => {
                     use: ['html-loader', {
                         loader: 'nunjucks-html-loader',
                         options : {
-                            searchPaths: [`${config.src.base}${config.src.templates}`]
+                            searchPaths: [`${smile.src.base}/${smile.src.views}`]
                         }
                     }]
                 },
@@ -79,7 +80,7 @@ module.exports = (env, options) => {
                             loader: 'file-loader',
                             options: {
                                 name: "[path][name].[ext]",
-                                context: config.src.base
+                                context: smile.src.base
                             },
                         },
                     ],
@@ -88,9 +89,9 @@ module.exports = (env, options) => {
                     test: /\.(sa|sc|c)ss$/,
                     use: [
                         MiniCssExtractPlugin.loader,
-                        `css-loader?sourceMap=${ isDev }`,
+                        `css-loader?sourceMap=${isDev}`,
                         {
-                            loader: "postcss-loader",
+                            loader: 'postcss-loader',
                             options: {
                                 plugins: [
                                     postCssInlineSvg(),
@@ -101,12 +102,12 @@ module.exports = (env, options) => {
                                 sourceMap: isDev
                             }
                         },
-                        `group-css-media-queries-loader?sourceMap=${ isDev }`,
-                        `sass-loader?sourceMap=${ isDev }`
+                        `group-css-media-queries-loader?sourceMap=${isDev}`,
+                        `sass-loader?sourceMap=${isDev}`
                     ]
                 },
                 {test: /\.vue$/, loader: 'vue-loader',},
-                {test: /\.ejs$/, loader: "ejs-loader"},
+                {test: /\.ejs$/, loader: 'ejs-loader'},
             ]
         },
         resolve: {
@@ -120,7 +121,7 @@ module.exports = (env, options) => {
             !isDev ? new CleanWebpackPlugin('dist') : () => {},
             new CopyWebpackPlugin(copyFiles),
             new MiniCssExtractPlugin({
-                filename: config.build.styles
+                filename: smile.build.styles
             }),
             ...HtmlWebpackPlugins
         ]

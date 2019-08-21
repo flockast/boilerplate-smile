@@ -11,7 +11,7 @@ Install dependencies<br>
 `$ npm install` or `$ yarn`
 
 ## Development
-Run the local webpack-dev-server with livereload and autocompile on [http://localhost:8080/](http://localhost:8080/)<br>
+Run the local webpack-dev-server with livereload and autocompile on localhost<br>
 `$ npm run dev` or `$ yarn dev`
 
 ## Deployment
@@ -19,38 +19,34 @@ Build the current application<br>
 `$ npm run build` or `$ yarn build`
 
 ## Configure
-file <b>package.json</b> have config
+In <b>package.json</b>
 ```sh
-  "config": {
+  "smile": {
     "src": {
       "base": "./src",
-      "styles": "/styles/index.scss",
-      "js": "/js/index.js",
-      "templates": "/templates"
+      "styles": "styles/index.scss",
+      "js": "js/index.js",
+      "views": "views"
     },
     "build": {
-      "base": "dist",
-      "styles": "bundle.[name].css",
-      "js": "bundle.[name].js"
+      "base": "./dist",
+      "styles": "bundle[hash].css",
+      "js": "bundle[hash].js"
     },
     "copy": [
       {
-        "from": "/img",
-        "to": "static/img"
-      },
-      {
-        "from": "/fonts",
-        "to": "static/fonts"
-      },
-      {
-        "from": "/favicon.ico",
+        "from": "favicon.ico",
         "to": "[name].[ext]"
       }
     ],
-    "pages": [
+    "routes": [
       {
-        "from": "/templates/pages/index.njk",
-        "to": "index.html"
+        "url": "/",
+        "file": "pages/index.njk"
+      },
+      {
+        "url": "about",
+        "file": "pages/about.njk"
       }
     ],
     "publicPath": ""
