@@ -2119,6 +2119,14 @@ css-loader@^3.2.0:
     postcss-value-parser "^4.0.0"
     schema-utils "^2.0.0"
 
+css-mqpacker@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/css-mqpacker/-/css-mqpacker-7.0.0.tgz#48f4a0ff45b81ec661c4a33ed80b9db8a026333b"
+  integrity sha512-temVrWS+sB4uocE2quhW8ru/KguDmGhCU7zN213KxtDvWOH3WS/ZUStfpF4fdCT7W8fPpFrQdWRFqtFtPPfBLA==
+  dependencies:
+    minimist "^1.2.0"
+    postcss "^7.0.0"
+
 css-select-base-adapter@~0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/css-select-base-adapter/-/css-select-base-adapter-0.1.1.tgz#3b2ff4972cc362ab88561507a95408a1432135d7"
@@ -3240,13 +3248,6 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2:
   version "4.1.15"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.15.tgz#ffb703e1066e8a0eeaa4c8b80ba9253eeefbfb00"
   integrity sha512-6uHUhOPEBgQ24HM+r6b/QwWfZq+yiFcipKFrOFiBEnWdy5sdzYoi+pJeQaPI5qOLRFqWmAXUPQNsielzdLoecA==
-
-group-css-media-queries-loader@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/group-css-media-queries-loader/-/group-css-media-queries-loader-3.0.2.tgz#5df0d97a1edbfd635c5dbccfaafa1c378abbc48f"
-  integrity sha512-ImySrudXi2QcilpE3wX6zWfLBFvmYrU4s7ta6G2rHoIVVMSy+v3AjNmhT8bsMty0ypLsVfi6+6jG5KV1NNx/9Q==
-  dependencies:
-    loader-utils "^1.1.0"
 
 handle-thing@^2.0.0:
   version "2.0.0"

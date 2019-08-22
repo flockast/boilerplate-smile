@@ -3,9 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const autoprefixer = require('autoprefixer');
-const postCssInlineSvg = require('postcss-inline-svg');
-const { CleanWebpackPlugin }  = require('clean-webpack-plugin');
+const {CleanWebpackPlugin}  = require('clean-webpack-plugin');
 const {smile} = require('./package.json');
 
 module.exports = (env, options) => {
@@ -26,7 +24,6 @@ module.exports = (env, options) => {
             )
         })
     }
-
 
     if(smile.copy) {
         smile.copy.forEach(copy => {
@@ -56,12 +53,7 @@ module.exports = (env, options) => {
                 {
                     test: /\.js$/,
                     exclude: /(node_modules|bower_components)/,
-                    use: {
-                        loader: 'babel-loader',
-                        options: {
-                            presets: ['@babel/preset-env']
-                        }
-                    }
+                    use: 'babel-loader'
                 },
                 {
                     test: /\.(njk|nunjucks|nunj)$/,
@@ -89,26 +81,15 @@ module.exports = (env, options) => {
                     use: [
                         MiniCssExtractPlugin.loader,
                         `css-loader?sourceMap=${isDev}`,
-                        {
-                            loader: 'postcss-loader',
-                            options: {
-                                plugins: [
-                                    postCssInlineSvg(),
-                                    autoprefixer()
-                                ],
-                                sourceMap: isDev
-                            }
-                        },
-                        `group-css-media-queries-loader?sourceMap=${isDev}`,
+                        `postcss-loader?sourceMap=${isDev}`,
                         `sass-loader?sourceMap=${isDev}`
                     ]
                 },
-                {test: /\.ejs$/, loader: 'ejs-loader'},
             ]
         },
         plugins: [
             !isDev ? new OptimizeCSSAssetsPlugin({}) : () => {},
-            !isDev ? new CleanWebpackPlugin() : () => {},
+            !isDev ? new CleanWebpackPlugin({}) : () => {},
             new CopyWebpackPlugin(copyFiles),
             new MiniCssExtractPlugin({
                 filename: smile.build.styles
