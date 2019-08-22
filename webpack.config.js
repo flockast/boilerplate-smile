@@ -1,9 +1,11 @@
 const path = require('path');
+const glob = require("glob");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const {CleanWebpackPlugin}  = require('clean-webpack-plugin');
+const PurgecssPlugin = require('purgecss-webpack-plugin');
 const {smile} = require('./package.json');
 
 module.exports = (env, options) => {
@@ -90,6 +92,9 @@ module.exports = (env, options) => {
         plugins: [
             !isDev ? new OptimizeCSSAssetsPlugin({}) : () => {},
             !isDev ? new CleanWebpackPlugin({}) : () => {},
+            !isDev ? new PurgecssPlugin({
+                paths: glob.sync(`${smile.src.base}/${smile.src.views}/**/*`, { nodir: true })
+            }) : () => {},
             new CopyWebpackPlugin(copyFiles),
             new MiniCssExtractPlugin({
                 filename: smile.build.styles
