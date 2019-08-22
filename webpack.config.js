@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const {CleanWebpackPlugin}  = require('clean-webpack-plugin');
 const PurgeCssPlugin = require('purgecss-webpack-plugin');
 const smile = require('./smile.config.js');
 
@@ -50,6 +49,7 @@ module.exports = (env, options) => {
             overlay: true
         },
         devtool: isDev ? 'source-map' : '',
+        stats: 'minimal',
         module: {
             rules: [
                 {
@@ -94,7 +94,6 @@ module.exports = (env, options) => {
         },
         plugins: [
             !isDev ? new OptimizeCSSAssetsPlugin({}) : () => {},
-            !isDev ? new CleanWebpackPlugin({}) : () => {},
             !isDev ? new PurgeCssPlugin({
                 paths: glob.sync(`${smile.src.base}/${smile.src.views}/**/*`, { nodir: true })
             }) : () => {},
