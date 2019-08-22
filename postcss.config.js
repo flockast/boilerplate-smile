@@ -1,5 +1,5 @@
-module.exports = ({ file, options, env }) => {
-  const isDev = options.mode === 'development';
+module.exports = ({ webpack }) => {
+  const isDev = webpack.mode === 'development';
   return {
     plugins: {
       'postcss-inline-svg': {},
