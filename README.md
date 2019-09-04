@@ -24,7 +24,7 @@ In <b>package.json</b>
   "smile": {
     "src": {
       "base": "./src",
-      "styles": "styles/index.scss",
+      "styles": "assets/styles/index.scss",
       "js": "js/index.js",
       "views": "views"
     },
