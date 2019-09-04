@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "clean": "rm -rf dist",
-    "dev": "webpack-dev-server --mode development",
+    "serve": "webpack-dev-server --mode development",
     "build": "yarn clean && webpack --mode production",
     "build:watch": "webpack --watch"
   },
