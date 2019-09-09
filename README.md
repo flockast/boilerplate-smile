@@ -7,19 +7,24 @@ Boilerplate smile (babel, scss, webpack)
 You only need <b>node.js</b> pre-installed and you’re good to go.
 
 ## Setup
-Install dependencies<br>
-`$ npm install` or `$ yarn`
+```
+yarn install
+```
 
 ## Development
-Run the local webpack-dev-server with livereload and autocompile on localhost<br>
-`$ npm run dev` or `$ yarn dev`
+Compiles and hot-reloads for development<br>
+```
+yarn run serve
+```
 
 ## Deployment
-Build the current application<br>
-`$ npm run build` or `$ yarn build`
+Compiles and minifies for production<br>
+```
+yarn run build
+```
 
 ## Configure
-In <b>package.json</b>
+<b>smile.config.js</b>
 ```sh
   "smile": {
     "src": {
