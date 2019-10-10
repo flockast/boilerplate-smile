@@ -3,12 +3,6 @@ html {
   font-size: 62.5%;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-
 a {
   color: $color-link;
   text-decoration: underline;
